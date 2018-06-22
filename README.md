@@ -35,7 +35,7 @@
 > 重写该方法 返回对应的方法名 ,该方法可以不使用super.registerJSCallNativeName()
 
 
-### Native 调用 H5  方法名
+### Native 调用 H5 
 #### 对应功能的方法名
 1. 本地登录完成 同步H5登录信息: `nativeCallLoginInfo`
 2. 本地调用H5页面刷新 : `nativeCallRefresh`
