@@ -5,6 +5,8 @@
 
 `progressBackgroundColor` 进度条的颜色
 
+`cookieStr` cookie 如果不需要可以不配置
+
 ## **Native和H5的常用交互**
 ### H5 调用 Native
 #### 对应功能的方法名
