@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F53AF3D820DD0C930030CE52 /* TSRouter.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F53AF3D620DD0C920030CE52 /* TSRouter.podspec */; };
 		F53AF3D920DD0C930030CE52 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F53AF3D720DD0C920030CE52 /* LICENSE */; };
 		F53AF3DB20DD0E2B0030CE52 /* TSWebViewController+NativeCallWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53AF3DA20DD0E2B0030CE52 /* TSWebViewController+NativeCallWeb.swift */; };
 		F53AF3DD20DD0E4E0030CE52 /* TSWebViewController+WebCallNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53AF3DC20DD0E4E0030CE52 /* TSWebViewController+WebCallNative.swift */; };
+		F53AF3DF20DD24910030CE52 /* TSWebViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F53AF3DE20DD24910030CE52 /* TSWebViewController.podspec */; };
 		F53C976F20DB590F00B9E892 /* TSWebviewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F53C976E20DB590F00B9E892 /* TSWebviewController.bundle */; };
 		F5B7E53020D8FDA6002368BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B7E52F20D8FDA6002368BE /* AppDelegate.swift */; };
 		F5B7E53220D8FDA6002368BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B7E53120D8FDA6002368BE /* ViewController.swift */; };
@@ -40,10 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F53AF3D620DD0C920030CE52 /* TSRouter.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TSRouter.podspec; sourceTree = SOURCE_ROOT; };
 		F53AF3D720DD0C920030CE52 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		F53AF3DA20DD0E2B0030CE52 /* TSWebViewController+NativeCallWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSWebViewController+NativeCallWeb.swift"; sourceTree = "<group>"; };
 		F53AF3DC20DD0E4E0030CE52 /* TSWebViewController+WebCallNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSWebViewController+WebCallNative.swift"; sourceTree = "<group>"; };
+		F53AF3DE20DD24910030CE52 /* TSWebViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TSWebViewController.podspec; sourceTree = SOURCE_ROOT; };
 		F53C976E20DB590F00B9E892 /* TSWebviewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TSWebviewController.bundle; sourceTree = "<group>"; };
 		F5B7E52C20D8FDA6002368BE /* TSWebViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSWebViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B7E52F20D8FDA6002368BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 		F5B7E52E20D8FDA6002368BE /* TSWebViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F53AF3DE20DD24910030CE52 /* TSWebViewController.podspec */,
 				F53AF3D720DD0C920030CE52 /* LICENSE */,
-				F53AF3D620DD0C920030CE52 /* TSRouter.podspec */,
 				F5CE04B220D9EF5B009A96A3 /* code */,
 				F5B7E52F20D8FDA6002368BE /* AppDelegate.swift */,
 				F5B7E53120D8FDA6002368BE /* ViewController.swift */,
@@ -257,10 +257,10 @@
 			files = (
 				F53AF3D920DD0C930030CE52 /* LICENSE in Resources */,
 				F5B7E53A20D8FDA7002368BE /* LaunchScreen.storyboard in Resources */,
-				F53AF3D820DD0C930030CE52 /* TSRouter.podspec in Resources */,
 				F5B7E53720D8FDA7002368BE /* Assets.xcassets in Resources */,
 				F53C976F20DB590F00B9E892 /* TSWebviewController.bundle in Resources */,
 				F5B7E53520D8FDA6002368BE /* Main.storyboard in Resources */,
+				F53AF3DF20DD24910030CE52 /* TSWebViewController.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

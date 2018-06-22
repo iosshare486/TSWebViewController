@@ -28,11 +28,16 @@ public class TSWebViewController: UIViewController {
     public let ts_nativeCallClearCache = "nativeCallClearCache"
     
     
+    /// web url
+    public var htmlString: String?
+    /// 进度条的颜色
+    public var progressBackgroundColor: UIColor! = .red
+    //配置cookie
+    public var cookieStr: String?
+    
     public var webView: WKWebView!
     
     private var progressView: UIProgressView!
-    
-    public var htmlString: String!
     
     private var configuretion: WKWebViewConfiguration!
     
@@ -40,7 +45,7 @@ public class TSWebViewController: UIViewController {
     
     private let closeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     
-    var registerFuncName: [String] = [String]()
+    private var registerFuncName: [String] = [String]()
     
     deinit {
         
@@ -70,12 +75,15 @@ public class TSWebViewController: UIViewController {
         let navBarHeight = UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.bounds.height ?? 0)
         self.progressView = UIProgressView(frame: CGRect(x: 0, y: navBarHeight, width: self.view.bounds.width, height: 10))
         self.progressView.progressViewStyle = .default
-        self.progressView.tintColor = .red
+        self.progressView.tintColor = progressBackgroundColor
         self.view.addSubview(self.progressView)
-//        https://sx.caiqr.com
-        let myURL = URL(string: "https://sx.caiqr.com")
-        let myRequest = URLRequest(url: myURL!)
-        self.webView.load(myRequest)
+        if let str = self.htmlString {
+            let myURL = URL(string: str)
+            let myRequest = URLRequest(url: myURL!)
+            self.webView.load(myRequest)
+        }else {
+            debugPrint("TSWebViewController: htmlString is nil")
+        }
         
         // 监听支持KVO的属性
         self.webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
@@ -230,22 +238,15 @@ extension TSWebViewController  {
         configuretion.preferences.javaScriptEnabled = true
         // 默认是不能通过JS自动打开窗口的，必须通过用户交互才能打开
         configuretion.preferences.javaScriptCanOpenWindowsAutomatically = false
-        
         // 通过js与webview内容交互配置
         configuretion.userContentController = WKUserContentController()
-        
         //配置cookie
-        var coolieStr = ""
-        //        if (MJUserInfo.shared.token?.count)! > 0 {
-        //
-        //            coolieStr = String(format: "document.cookie ='token=%@'", MJUserInfo.shared.token!)
-        //        }
-        
-        // 添加一个JS到HTML中，这样就可以直接在JS中调用我们添加的JS方法
-        let script = WKUserScript(source: coolieStr, injectionTime: .atDocumentStart,// 在载入时就添加JS
-            forMainFrameOnly: true) // 只添加到mainFrame中
-        
-        configuretion.userContentController.addUserScript(script)
+        if let cookie = self.cookieStr {
+         
+            let script = WKUserScript(source: cookie, injectionTime: .atDocumentStart,// 在载入时就添加JS
+                forMainFrameOnly: true) // 只添加到mainFrame中
+            configuretion.userContentController.addUserScript(script)
+        }
         
         // 添加一个名称，就可以在JS通过这个名称发送消息：
         self.registerFuncName.append(contentsOf: [ts_webCallShare, ts_webCallLoginStatus, ts_webCallPayment, ts_webCallNativeRouter, ts_webCallClosePage, ts_webCallCopyText, ts_webCallError, ts_webCallScreenCapture])
