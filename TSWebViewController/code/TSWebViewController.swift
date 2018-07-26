@@ -10,23 +10,24 @@
 import UIKit
 import WebKit
 
-public class TSWebViewController: UIViewController {
+/// JS call Native 方法名
+public let ts_webCallShare = "webCallShare"
+public let ts_webCallLoginStatus = "webCallLoginStatus"
+public let ts_webCallPayment = "webCallPayment"
+public let ts_webCallNativeRouter = "webCallNativeRouter"
+public let ts_webCallClosePage = "webCallClosePage"
+public let ts_webCallCopyText = "webCallCopyText"
+public let ts_webCallError = "webCallError"
+public let ts_webCallScreenCapture = "webCallScreenCapture"
+/// Native call JS 方法名
+public let ts_nativeCallLoginInfo = "nativeCallLoginInfo"
+public let ts_nativeCallRefresh = "nativeCallRefresh"
+public let ts_nativeCallShareSuccess = "nativeCallShareSuccess"
+public let ts_nativeCallClearCache = "nativeCallClearCache"
 
-    /// JS call Native 方法名
-    public let ts_webCallShare = "webCallShare"
-    public let ts_webCallLoginStatus = "webCallLoginStatus"
-    public let ts_webCallPayment = "webCallPayment"
-    public let ts_webCallNativeRouter = "webCallNativeRouter"
-    public let ts_webCallClosePage = "webCallClosePage"
-    public let ts_webCallCopyText = "webCallCopyText"
-    public let ts_webCallError = "webCallError"
-    public let ts_webCallScreenCapture = "webCallScreenCapture"
-    /// Native call JS 方法名
-    public let ts_nativeCallLoginInfo = "nativeCallLoginInfo"
-    public let ts_nativeCallRefresh = "nativeCallRefresh"
-    public let ts_nativeCallShareSuccess = "nativeCallShareSuccess"
-    public let ts_nativeCallClearCache = "nativeCallClearCache"
-    
+public let ts_webCallMethodArr = [ts_webCallShare, ts_webCallLoginStatus, ts_webCallPayment, ts_webCallNativeRouter, ts_webCallClosePage, ts_webCallCopyText, ts_webCallError, ts_webCallScreenCapture]
+
+public class TSWebViewController: UIViewController {
     
     /// web url
     public var htmlString: String?
@@ -34,8 +35,10 @@ public class TSWebViewController: UIViewController {
     public var progressBackgroundColor: UIColor! = .red
     //配置cookie
     public var cookieStr: String?
-    
+    //webView
     public var webView: WKWebView!
+    //覆盖设置设置导航按钮
+    public var coverNavItemButton: (() -> Void)?
     
     private var progressView: UIProgressView!
     
@@ -111,7 +114,6 @@ public class TSWebViewController: UIViewController {
         }
     }
     
-    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -171,6 +173,8 @@ extension TSWebViewController: WKScriptMessageHandler, WKNavigationDelegate, WKU
 //防止内存泄露 添加了一个弱引用的delegate
 public class WeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
     
+    
+    
     weak var scriptDelegate: WKScriptMessageHandler?
     
     init(delegate: WKScriptMessageHandler) {
@@ -189,7 +193,11 @@ public class WeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
 extension TSWebViewController  {
     // 配置 导航栏 返回按钮
     private func setNavBackButton() {
-        
+        //导航按钮被覆盖
+        if self.coverNavItemButton != nil {
+            self.coverNavItemButton!()
+            return
+        }
         let path = Bundle.init(for: TSWebViewController.self).path(forResource: "TSWebviewController", ofType: "bundle")
         let bundle = Bundle.init(path: path!)
         //左侧占位
@@ -262,7 +270,11 @@ extension TSWebViewController  {
     
     // web 关闭
     @objc private func backVC() {
-        self.navigationController?.popViewController(animated: true)
+        if (self.presentingViewController != nil) {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     // web 返回前一页
