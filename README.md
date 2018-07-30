@@ -7,9 +7,12 @@
 
 `cookieStr` cookie 如果不需要可以不配置
 
+`coverNavItemButton` 配置导航按钮闭包   
+
+``
 ## **Native和H5的常用交互**
 ### H5 调用 Native
-#### 对应功能的方法名
+#### 对应功能的方法名(定义的方法已经对外暴漏)
 1. 调用分享功能： `webCallShare`
 2. 同步登录状态 (即h5登录成功后，传递token，同步登录状态)：`webCallLoginStatus`
 3. 调用支付功能: `webCallPayment`
