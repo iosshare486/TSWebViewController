@@ -227,8 +227,6 @@ extension TSWebViewController  {
     
     //隐藏导航栏底部的横线
     private func hiddenNavShadowLine() {
-        
-        self.navigationController?.navigationBar.backgroundColor = .blue
         if let barBackgroundView = navigationController?.navigationBar.subviews[0] {
             let valueForKey = barBackgroundView.value(forKey:)
             
