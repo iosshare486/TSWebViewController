@@ -27,7 +27,7 @@ public let ts_nativeCallClearCache = "nativeCallClearCache"
 
 public let ts_webCallMethodArr = [ts_webCallShare, ts_webCallLoginStatus, ts_webCallPayment, ts_webCallNativeRouter, ts_webCallClosePage, ts_webCallCopyText, ts_webCallError, ts_webCallScreenCapture]
 
-public class TSWebViewController: UIViewController {
+open class TSWebViewController: UIViewController {
     
     /// web url
     public var htmlString: String?
@@ -63,7 +63,7 @@ public class TSWebViewController: UIViewController {
         
     }
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         // 隐藏导航栏底部黑线
         self.hiddenNavShadowLine()
@@ -94,7 +94,7 @@ public class TSWebViewController: UIViewController {
     }
 
     // 配置进度条 和 title
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "loading" {
             self.progressView.alpha = 1.0
         } else if keyPath == "estimatedProgress" {
@@ -114,7 +114,7 @@ public class TSWebViewController: UIViewController {
         }
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
