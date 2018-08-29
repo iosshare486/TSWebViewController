@@ -32,7 +32,7 @@ open class TSWebViewController: UIViewController {
     /// web url
     public var htmlString: String?
     /// 进度条的颜色
-    public var progressBackgroundColor: UIColor! = .red
+    open var progressBackgroundColor: UIColor! = .red
     //配置cookie
     public var cookieStr: String?
     //webView
@@ -143,12 +143,15 @@ extension TSWebViewController: WKScriptMessageHandler, WKNavigationDelegate, WKU
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        let title: NSString = NSString(string: self.webView.title ?? "")
-        if title.length > 8 {
-            self.title = title.substring(to: 7)
-        }else{
-            self.title = self.webView.title
+        if let count = self.title?.count, count > 0 {}else {
+            let title: NSString = NSString(string: self.webView.title ?? "")
+            if title.length > 8 {
+                self.title = title.substring(to: 7)
+            }else{
+                self.title = self.webView.title
+            }
         }
+        
         
         //网页加载完成时判断是否有前一页，没有则只显示返回按钮，有则显示关闭按钮
         if webView.canGoBack {
