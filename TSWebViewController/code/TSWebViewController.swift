@@ -31,7 +31,7 @@ public class TSWebViewController: UIViewController {
     /// web url
     public var htmlString: String?
     /// 进度条的颜色
-    public var progressBackgroundColor: UIColor! = .red
+    open var progressBackgroundColor: UIColor! = .red
     //配置cookie
     public var cookieStr: String?
     
@@ -77,10 +77,9 @@ public class TSWebViewController: UIViewController {
         self.progressView.progressViewStyle = .default
         self.progressView.tintColor = progressBackgroundColor
         self.view.addSubview(self.progressView)
-        if let str = self.htmlString {
-            let myURL = URL(string: str)
-            let myRequest = URLRequest(url: myURL!)
-            self.webView.load(myRequest)
+        if let str = self.htmlString, let myURL = URL(string: str) {
+            let myrequest = URLRequest(url: myURL)
+            self.webView.load(myrequest)
         }else {
             debugPrint("TSWebViewController: htmlString is nil")
         }
@@ -141,11 +140,15 @@ extension TSWebViewController: WKScriptMessageHandler, WKNavigationDelegate, WKU
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        let title: NSString = NSString(string: self.webView.title ?? "")
-        if title.length > 8 {
-            self.title = title.substring(to: 7)
-        }else{
-            self.title = self.webView.title
+        guard let count = self.title?.count, count > 0 else {
+            
+            let title: NSString = NSString(string: self.webView.title ?? "")
+            if title.length > 8 {
+                self.title = title.substring(to: 7)
+            }else{
+                self.title = self.webView.title
+            }
+            return
         }
         
         //网页加载完成时判断是否有前一页，没有则只显示返回按钮，有则显示关闭按钮
@@ -220,7 +223,6 @@ extension TSWebViewController  {
     //隐藏导航栏底部的横线
     private func hiddenNavShadowLine() {
         
-        self.navigationController?.navigationBar.backgroundColor = .blue
         if let barBackgroundView = navigationController?.navigationBar.subviews[0] {
             let valueForKey = barBackgroundView.value(forKey:)
             
@@ -262,7 +264,14 @@ extension TSWebViewController  {
     
     // web 关闭
     @objc private func backVC() {
-        self.navigationController?.popViewController(animated: true)
+        
+        if let _ = self.presentingViewController {
+            
+            self.dismiss(animated: true, completion: nil)
+        }else {
+        
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     // web 返回前一页
