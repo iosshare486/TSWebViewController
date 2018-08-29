@@ -32,7 +32,12 @@ open class TSWebViewController: UIViewController {
     /// web url
     public var htmlString: String?
     /// 进度条的颜色
-    open var progressBackgroundColor: UIColor! = .red
+    open var progressBackgroundColor: UIColor {
+        
+        get {
+            return .red
+        }
+    }
     //配置cookie
     public var cookieStr: String?
     //webView
