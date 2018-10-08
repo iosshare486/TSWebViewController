@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "TSWebViewController"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "this is WKwebview"
 
   s.description  = <<-DESC
