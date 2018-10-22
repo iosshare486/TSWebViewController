@@ -209,7 +209,7 @@ extension TSWebViewController  {
         let path = Bundle.init(for: TSWebViewController.self).path(forResource: "TSWebviewController", ofType: "bundle")
         let bundle = Bundle.init(path: path!)
         //左侧占位
-        let nagetiveSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let nagetiveSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         nagetiveSpacer.width = -8
         
         // 返回按钮 （返回前一网页）

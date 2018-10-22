@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "TSWebViewController"
-  s.version      = "0.0.2"
+  s.version      = "2.0.0"
   s.summary      = "this is WKwebview"
 
   s.description  = <<-DESC
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.framework  = "UIKit","WebKit"
 
-  s.swift_version = '4.0'
+  s.swift_version = '4.2'
 
   s.requires_arc = true
 end
