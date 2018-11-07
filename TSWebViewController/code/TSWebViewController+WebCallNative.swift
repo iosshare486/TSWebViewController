@@ -13,7 +13,7 @@ import UIKit
 public extension TSWebViewController {
     
     /// JS 调用 Native方法
-    public func jsCallNative(name: String, body: Any) {
+    @objc public func jsCallNative(name: String, body: Any) {
         
         switch name {
         case ts_webCallShare:
@@ -39,31 +39,31 @@ public extension TSWebViewController {
     }
     
     /// 分享
-    public func webCallShare(body: Any) {}
+    @objc public func webCallShare(body: Any) {}
     
     /// 登录状态
-    public func webCallLoginStatus(body: Any) {}
+    @objc public func webCallLoginStatus(body: Any) {}
     
     /// 调用支付
-    public func webCallPayment(body: Any) {}
+    @objc public func webCallPayment(body: Any) {}
     
     /// 跳转本地router
-    public func webCallNativeRouter(body: Any) {}
+    @objc public func webCallNativeRouter(body: Any) {}
     
     /// 关闭页面
-    public func webCallClosePage(body: Any) {}
+    @objc public func webCallClosePage(body: Any) {}
     
     /// 复制文本
-    public func webCallCopyText(body: Any) {}
+    @objc public func webCallCopyText(body: Any) {}
     
     /// 异常交互
-    public func webCallError(body: Any) {}
+    @objc public func webCallError(body: Any) {}
     
     /// 截取屏幕
-    public func webCallScreenCapture(body: Any) {}
+    @objc public func webCallScreenCapture(body: Any) {}
     
     /// 注册jS call native 的方法名
-    public func registerJSCallNativeName() -> [String]? {
+    @objc public func registerJSCallNativeName() -> [String]? {
         
         return nil
     }
